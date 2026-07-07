@@ -42,6 +42,36 @@ const designs = [
     theme: "bg-[#f4f0e6] text-[#111] border-black",
     accent: "#ff3b30",
   },
+  {
+    href: "/inkwell",
+    no: "04",
+    name: "Inkwell",
+    tagline: "Comic book · black ink + pop colour",
+    blurb:
+      "Design 1's ink discipline meets Design 3's colour. Ben-Day halftone, thick gutters, speech balloons, SFX bursts and panel-by-panel reveals.",
+    theme: "bg-[#f7f1e1] text-[#141414] border-black",
+    accent: "#e8352b",
+  },
+  {
+    href: "/storyboard",
+    no: "05",
+    name: "Storyboard",
+    tagline: "Noir graphic novel · read on scroll",
+    blurb:
+      "A darker, serious take on the comic language. Charcoal paper, one blood-red accent, sequential panels that ink in as you scroll with narration boxes.",
+    theme: "bg-[#111216] text-[#ece6d8] border-white/20",
+    accent: "#d92c1f",
+  },
+  {
+    href: "/sketchbook",
+    no: "06",
+    name: "The Sketchbook",
+    tagline: "Comic energy · artist's-notebook vibe",
+    blurb:
+      "Same colour + animation family as 4 & 5, but set on ruled paper over an always-scribbling pen-doodle background at low opacity. Works taped in like a working journal.",
+    theme: "bg-[#f5efe1] text-[#1b2a4a] border-[#1b2a4a]/30",
+    accent: "#e23b2e",
+  },
 ];
 
 export default function Home() {
@@ -57,13 +87,15 @@ export default function Home() {
             simnao · landing page studies
           </p>
           <h1 className="mt-5 max-w-3xl text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
-            Three directions for{" "}
+            Six directions for{" "}
             <span className="font-instrument italic text-white">Simão&apos;s</span>{" "}
             portfolio.
           </h1>
           <p className="mt-5 max-w-xl text-neutral-400">
-            Same artist, same works — three completely different worlds. Open each
-            one full-screen, then tell me which feels most like you.
+            Same artist, same works — six different worlds. The first three set
+            the poles; 04–06 explore the middle, where the black-and-white
+            discipline of 01 meets the colour, comic energy and animation of 03.
+            Open each full-screen, then tell me which feels most like you.
           </p>
         </motion.header>
 

@@ -5,6 +5,8 @@ import {
   Playfair_Display,
   Space_Grotesk,
   Instrument_Serif,
+  Bangers,
+  Caveat,
 } from "next/font/google";
 import "./globals.css";
 
@@ -39,6 +41,20 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+// Comic-book display — used by the ink/comic directions
+const bangers = Bangers({
+  variable: "--font-bangers",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+// Hand-lettered — used by the sketchbook direction
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "simnao — Simão · yes/no",
   description:
@@ -53,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${instrument.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${instrument.variable} ${spaceGrotesk.variable} ${bangers.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
