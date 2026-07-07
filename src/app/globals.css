@@ -6,6 +6,8 @@
   --font-playfair: var(--font-playfair);
   --font-instrument: var(--font-instrument);
   --font-space: var(--font-space);
+  --font-bangers: var(--font-bangers);
+  --font-caveat: var(--font-caveat);
 
   /* shadcn neutral tokens (used by ui components) */
   --color-background: var(--background);
@@ -48,6 +50,12 @@ body {
 }
 .font-grotesk {
   font-family: var(--font-space), system-ui, sans-serif;
+}
+.font-comic {
+  font-family: var(--font-bangers), "Comic Sans MS", system-ui, sans-serif;
+}
+.font-hand {
+  font-family: var(--font-caveat), "Comic Sans MS", cursive;
 }
 
 /* Respect reduced motion globally */
