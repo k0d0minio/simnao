@@ -72,6 +72,36 @@ const designs = [
     theme: "bg-[#f5efe1] text-[#1b2a4a] border-[#1b2a4a]/30",
     accent: "#e23b2e",
   },
+  {
+    href: "/gutter",
+    no: "07",
+    name: "The Gutter",
+    tagline: "Comic grammar · not the costume",
+    blurb:
+      "The graphic novel taken seriously — the tiered panel grid and the gutter as negative space, ink on newsprint, one dried-blood accent. No SFX, no balloons; the only borrowed trick is the reading rhythm, panels inking in left to right.",
+    theme: "bg-[#e6dfcd] text-[#16130d] border-[#16130d]",
+    accent: "#a52a1c",
+  },
+  {
+    href: "/marginalia",
+    no: "08",
+    name: "Marginalia",
+    tagline: "The working notebook · worked-over",
+    blurb:
+      "The other notebook — the used one. Toned paper gone grey at the edges, titles written and struck and written again, a verdict in the margin that's usually 'no'. The struggle is the content. Serious, a little bruised.",
+    theme: "bg-[#cabb9d] text-[#2a251c] border-[#2a251c]/40",
+    accent: "#8a2b1e",
+  },
+  {
+    href: "/press",
+    no: "09",
+    name: "Overprint",
+    tagline: "Silkscreen · pulled out of register",
+    blurb:
+      "A hand-pulled print. Two spot inks laid down out of register, halftone edges, crop and registration marks in the margins, edition stamps. The mis-registration is the yes/no printed twice, never landing in the same place.",
+    theme: "bg-[#e9e1cf] text-[#14110d] border-[#14110d]",
+    accent: "#cf3a24",
+  },
 ];
 
 export default function Home() {
@@ -87,15 +117,17 @@ export default function Home() {
             simnao · landing page studies
           </p>
           <h1 className="mt-5 max-w-3xl text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
-            Six directions for{" "}
+            Nine directions for{" "}
             <span className="font-instrument italic text-white">Simão&apos;s</span>{" "}
             portfolio.
           </h1>
           <p className="mt-5 max-w-xl text-neutral-400">
-            Same artist, same works — six different worlds. The first three set
-            the poles; 04–06 explore the middle, where the black-and-white
-            discipline of 01 meets the colour, comic energy and animation of 03.
-            Open each full-screen, then tell me which feels most like you.
+            Same artist, same works — nine different worlds. The first three set
+            the poles; 04–06 explore the middle where black-and-white discipline
+            meets colour and comic energy. 07–09 push further into one gritty,
+            professional identity: the grammar of the graphic novel, the
+            worked-over notebook, and the misregistered print. Open each
+            full-screen, then tell me which feels most like you.
           </p>
         </motion.header>
 
@@ -117,7 +149,7 @@ export default function Home() {
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <GenerativeArt
-                    artwork={artworks[i]}
+                    artwork={artworks[i % artworks.length]}
                     className="h-full w-full transition-transform duration-700 group-hover:scale-105"
                   />
                   <span
