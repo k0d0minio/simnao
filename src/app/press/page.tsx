@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring } from "motion/react";
 import { GenerativeArt } from "@/components/generative-art";
 import { artworks, priceFormatter, artistStatement } from "@/lib/artworks";
 
@@ -19,6 +19,8 @@ const INK = "#14110d";
 const PAPER = "#e9e1cf";
 const RED = "#cf3a24";
 const BLUE = "#2340b8";
+/* paint colour borrowed from Design 03 — Kinetic's paper */
+const PAINT = "#f4f0e6";
 
 export default function PressLanding() {
   return (
@@ -118,41 +120,127 @@ function Nav() {
   );
 }
 
-/* headline printed in three passes, laid down out of register */
+/* headline printed in three passes, laid down out of register — then it
+   settles into place and glitches in and out on a slow beat (see globals.css) */
 function Overprint({ text }: { text: string }) {
   const layers = [
-    { color: RED, from: { x: -16, y: 10 }, to: { x: -4, y: 3 }, blend: "multiply" as const },
-    { color: BLUE, from: { x: 14, y: -8 }, to: { x: 3, y: -2 }, blend: "multiply" as const },
-    { color: INK, from: { x: 0, y: 0 }, to: { x: 0, y: 0 }, blend: "normal" as const },
+    { color: RED, from: { x: -16, y: 10 }, rest: { x: -4, y: 3 }, blend: "multiply" as const, cls: "press-colour-pass" },
+    { color: BLUE, from: { x: 14, y: -8 }, rest: { x: 3, y: -2 }, blend: "multiply" as const, cls: "press-colour-pass" },
+    { color: INK, from: { x: 0, y: 0 }, rest: { x: 0, y: 0 }, blend: "normal" as const, cls: "press-ink-pass" },
   ];
   return (
-    <span className="relative inline-block font-display font-bold leading-[0.8] tracking-[-0.03em]">
+    <span className="press-title-flicker relative inline-block font-display font-bold leading-[0.8] tracking-[-0.03em]">
       {/* the ink pass holds the layout; colour passes are absolutely stacked */}
       <span className="invisible">{text}</span>
       {layers.map((l, i) => (
-        <motion.span
+        <span
           key={i}
           aria-hidden={i < layers.length - 1}
-          initial={{ x: l.from.x, y: l.from.y, opacity: 0 }}
-          animate={{ x: l.to.x, y: l.to.y, opacity: 1 }}
-          transition={{ delay: 0.15 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute left-0 top-0"
-          style={{ color: l.color, mixBlendMode: l.blend }}
+          className={`absolute left-0 top-0 ${l.cls}`}
+          style={
+            {
+              color: l.color,
+              mixBlendMode: l.blend,
+              "--from-x": `${l.from.x}px`,
+              "--from-y": `${l.from.y}px`,
+              "--rest-x": `${l.rest.x}px`,
+              "--rest-y": `${l.rest.y}px`,
+            } as React.CSSProperties
+          }
         >
           {text}
-        </motion.span>
+        </span>
       ))}
     </span>
   );
 }
 
+/* loose strokes of paint brushed across the hero, in Design 03's paper
+   colour, frayed at the edges by a displacement filter for a dry-brush feel */
+function PaintStrokes() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-soft-light"
+    >
+      <svg
+        className="h-full w-full"
+        viewBox="0 0 1000 600"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <filter id="press-brush" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.012 0.14"
+              numOctaves="2"
+              seed="7"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="26"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+          <filter id="press-brush-2" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.02 0.11"
+              numOctaves="2"
+              seed="19"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="30"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+        <g stroke={PAINT} fill="none" strokeLinecap="round">
+          <path
+            d="M-40 150 C 260 96, 640 190, 1060 128"
+            strokeWidth="72"
+            opacity="0.55"
+            filter="url(#press-brush)"
+          />
+          <path
+            d="M-40 438 C 300 480, 700 384, 1060 452"
+            strokeWidth="94"
+            opacity="0.45"
+            filter="url(#press-brush-2)"
+          />
+          <path
+            d="M120 -30 C 250 200, 214 424, 356 640"
+            strokeWidth="46"
+            opacity="0.4"
+            filter="url(#press-brush)"
+          />
+          <path
+            d="M792 -20 C 908 220, 846 432, 968 640"
+            strokeWidth="40"
+            opacity="0.35"
+            filter="url(#press-brush-2)"
+          />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 function Hero() {
   return (
-    <section className="relative px-6 pb-16 pt-14 md:pt-20">
+    <section className="relative overflow-hidden px-6 pb-16 pt-14 md:pt-20">
+      <PaintStrokes />
       {/* margin crop marks */}
       <RegMark className="left-4 top-4" />
       <RegMark className="right-4 top-4" />
-      <div className="mx-auto max-w-[1320px]">
+      <div className="relative z-10 mx-auto max-w-[1320px]">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] opacity-60">
           Edition — paintings &amp; hand-pulled prints · Simão
         </p>
@@ -229,15 +317,41 @@ function Pull({
   index: number;
 }) {
   const sold = art.status === "sold";
+
+  /* 3D tilt-toward-cursor, borrowed from Design 03 — Kinetic's collage cards */
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const srx = useSpring(rx, { stiffness: 200, damping: 18 });
+  const sry = useSpring(ry, { stiffness: 200, damping: 18 });
+
+  function move(e: React.MouseEvent<HTMLAnchorElement>) {
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    ry.set(px * 11);
+    rx.set(-py * 11);
+  }
+  function leave() {
+    rx.set(0);
+    ry.set(0);
+  }
+
   return (
-    <motion.a
-      href="mailto:studio@simnao.art?subject=Print%20enquiry"
-      initial={{ opacity: 0, y: 28 }}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-8%" }}
-      transition={{ duration: 0.6, delay: (index % 3) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative block"
+      transition={{ type: "spring", stiffness: 120, damping: 16, delay: (index % 3) * 0.06 }}
+      style={{ perspective: 900 }}
+      className="group"
     >
+      <motion.a
+        href="mailto:studio@simnao.art?subject=Print%20enquiry"
+        onMouseMove={move}
+        onMouseLeave={leave}
+        style={{ rotateX: srx, rotateY: sry, transformStyle: "preserve-3d" }}
+        className="relative block"
+      >
       {/* the print, in a paper margin with registration ticks */}
       <div className="relative border-2 bg-[#efe8d6] p-3" style={{ borderColor: INK }}>
         <RegMark className="-left-1 -top-1 h-3 w-3" />
@@ -296,7 +410,8 @@ function Pull({
           </span>
         </div>
       </div>
-    </motion.a>
+      </motion.a>
+    </motion.div>
   );
 }
 
