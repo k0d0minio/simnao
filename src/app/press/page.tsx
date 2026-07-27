@@ -236,6 +236,14 @@ function PaintStrokes() {
 function Hero() {
   return (
     <section className="relative overflow-hidden px-6 pb-16 pt-14 md:pt-20">
+      {/* crumpled, charcoal-marked studio paper — sits behind everything,
+         kept low-opacity and multiplied into the stock so it reads as weight,
+         not decoration */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25 mix-blend-multiply"
+        style={{ backgroundImage: "url(/hero-press.jpg)" }}
+      />
       <PaintStrokes />
       {/* margin crop marks */}
       <RegMark className="left-4 top-4" />
