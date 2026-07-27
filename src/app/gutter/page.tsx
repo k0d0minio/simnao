@@ -108,7 +108,7 @@ function Nav() {
     >
       <div className="mx-auto flex max-w-[1320px] items-center justify-between px-6 py-3">
         <Link
-          href="/"
+          href="/designs"
           className="text-[11px] font-bold uppercase tracking-[0.25em] opacity-70 hover:opacity-100"
         >
           ← designs
@@ -428,7 +428,7 @@ function Footer() {
     <footer className="flex flex-wrap items-center justify-between gap-3 px-6 py-8 text-[11px] font-bold uppercase tracking-[0.25em] opacity-60">
       <span>© {new Date().getFullYear()} simnao · Lisboa</span>
       <span className="hidden md:block">Design 07 — The Gutter</span>
-      <Link href="/" className="hover:opacity-100">
+      <Link href="/designs" className="hover:opacity-100">
         Back to designs
       </Link>
     </footer>

@@ -38,7 +38,7 @@ function TopBar() {
   return (
     <div className="fixed inset-x-0 top-0 z-50 mix-blend-difference">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 text-white">
-        <Link href="/" className="font-mono text-[11px] uppercase tracking-[0.3em]">
+        <Link href="/designs" className="font-mono text-[11px] uppercase tracking-[0.3em]">
           ← designs
         </Link>
         <span className="font-mono text-[11px] uppercase tracking-[0.3em]">
@@ -328,7 +328,7 @@ function Footer() {
     <footer className="flex items-center justify-between px-6 py-8 font-mono text-[11px] uppercase tracking-[0.3em] text-black/50">
       <span>© {new Date().getFullYear()} simnao</span>
       <span>Design 01 — Duality</span>
-      <Link href="/" className="hover:text-black">
+      <Link href="/designs" className="hover:text-black">
         Back to designs
       </Link>
     </footer>
