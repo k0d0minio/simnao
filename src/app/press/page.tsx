@@ -19,8 +19,6 @@ const INK = "#14110d";
 const PAPER = "#e9e1cf";
 const RED = "#cf3a24";
 const BLUE = "#2340b8";
-/* paint colour borrowed from Design 03 — Kinetic's paper */
-const PAINT = "#f4f0e6";
 
 export default function PressLanding() {
   return (
@@ -155,96 +153,30 @@ function Overprint({ text }: { text: string }) {
   );
 }
 
-/* loose strokes of paint brushed across the hero, in Design 03's paper
-   colour, frayed at the edges by a displacement filter for a dry-brush feel */
-function PaintStrokes() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 overflow-hidden mix-blend-soft-light"
-    >
-      <svg
-        className="h-full w-full"
-        viewBox="0 0 1000 600"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <filter id="press-brush" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.012 0.14"
-              numOctaves="2"
-              seed="7"
-              result="noise"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="26"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-          <filter id="press-brush-2" x="-20%" y="-20%" width="140%" height="140%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.02 0.11"
-              numOctaves="2"
-              seed="19"
-              result="noise"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="30"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-        </defs>
-        <g stroke={PAINT} fill="none" strokeLinecap="round">
-          <path
-            d="M-40 150 C 260 96, 640 190, 1060 128"
-            strokeWidth="72"
-            opacity="0.55"
-            filter="url(#press-brush)"
-          />
-          <path
-            d="M-40 438 C 300 480, 700 384, 1060 452"
-            strokeWidth="94"
-            opacity="0.45"
-            filter="url(#press-brush-2)"
-          />
-          <path
-            d="M120 -30 C 250 200, 214 424, 356 640"
-            strokeWidth="46"
-            opacity="0.4"
-            filter="url(#press-brush)"
-          />
-          <path
-            d="M792 -20 C 908 220, 846 432, 968 640"
-            strokeWidth="40"
-            opacity="0.35"
-            filter="url(#press-brush-2)"
-          />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
 function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pb-16 pt-14 md:pt-20">
-      {/* crumpled, charcoal-marked studio paper — sits behind everything,
-         kept low-opacity and multiplied into the stock so it reads as weight,
-         not decoration */}
+    <section className="relative flex min-h-[75vw] flex-col justify-center overflow-hidden px-6 pb-16 pt-14 md:pt-20">
+      {/* the studio-paper photograph, shown whole. `contain` guarantees the
+         picture is never cropped, zoomed or stretched; the section is held at
+         the image's own 4:3 ratio (min-height ≈ 75vw against a full-bleed
+         width) so it fills the panel edge-to-edge with no distortion. Any
+         slack falls back to the paper stock — the same colour — so the seams
+         never read. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25 mix-blend-multiply"
-        style={{ backgroundImage: "url(/hero-press.jpg)" }}
+        className="pointer-events-none absolute inset-0 bg-contain bg-center bg-no-repeat"
+        style={{ backgroundImage: "url(/hero-press.jpg)", backgroundColor: PAPER }}
       />
-      <PaintStrokes />
+      {/* soft paper vignette top & bottom so the type stays legible over the
+         picture without dimming its centre */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(233,225,207,0.66) 0%, rgba(233,225,207,0) 26%, rgba(233,225,207,0) 60%, rgba(233,225,207,0.76) 100%)",
+        }}
+      />
       {/* margin crop marks */}
       <RegMark className="left-4 top-4" />
       <RegMark className="right-4 top-4" />
@@ -287,6 +219,8 @@ function Hero() {
 }
 
 function Run() {
+  /* the three most recent plates, newest year first */
+  const latest = [...artworks].sort((a, b) => b.year - a.year).slice(0, 3);
   return (
     <section id="run" className="px-6 py-14 md:py-20">
       <div className="mx-auto max-w-[1320px]">
@@ -295,13 +229,13 @@ function Run() {
             The print run
           </h2>
           <p className="max-w-xs font-mono text-[12px] leading-relaxed opacity-70">
-            Six plates. Originals on canvas &amp; linen; a small hand-pulled
-            edition of each. Hover to pull the ink apart.
+            Three plates — the latest pulls. Originals on canvas &amp; linen;
+            a small hand-pulled edition of each. Hover to pull the ink apart.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {artworks.map((art, i) => (
+          {latest.map((art, i) => (
             <Pull key={art.id} art={art} index={i} />
           ))}
         </div>
