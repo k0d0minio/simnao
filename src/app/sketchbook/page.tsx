@@ -66,7 +66,7 @@ function Nav() {
     <nav className="sticky top-0 z-50 border-b-2 border-dashed border-[#1b2a4a]/25 backdrop-blur-[2px]">
       <div className="mx-auto flex max-w-[1300px] items-center justify-between px-6 py-3">
         <Link
-          href="/"
+          href="/designs"
           className="font-grotesk text-xs font-bold uppercase tracking-tight hover:underline"
         >
           ← designs
@@ -330,7 +330,7 @@ function Footer() {
     <footer className="flex flex-wrap items-center justify-between gap-3 border-t-2 border-dashed border-[#1b2a4a]/25 px-6 py-6 font-grotesk text-xs font-bold uppercase text-[#1b2a4a]/60">
       <span>© {new Date().getFullYear()} simnao</span>
       <span className="hidden md:block">Design 06 — The Sketchbook</span>
-      <Link href="/" className="underline">
+      <Link href="/designs" className="underline">
         Back to designs
       </Link>
     </footer>

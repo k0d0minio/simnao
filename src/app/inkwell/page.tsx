@@ -78,7 +78,7 @@ function Nav() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3">
         <Link
-          href="/"
+          href="/designs"
           className="font-grotesk text-xs font-bold uppercase tracking-tight hover:underline"
         >
           ← designs
@@ -423,7 +423,7 @@ function Footer() {
     >
       <span>© {new Date().getFullYear()} simnao</span>
       <span>Design 04 — Inkwell</span>
-      <Link href="/" className="underline">
+      <Link href="/designs" className="underline">
         Back to designs
       </Link>
     </footer>

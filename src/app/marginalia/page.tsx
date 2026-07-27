@@ -127,7 +127,7 @@ function Nav() {
     <nav className="sticky top-0 z-50 border-b border-[#2a251c]/25 backdrop-blur-[1px]">
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-3">
         <Link
-          href="/"
+          href="/designs"
           className="font-grotesk text-[11px] font-bold uppercase tracking-[0.2em] opacity-70 hover:opacity-100"
         >
           ← designs
@@ -436,7 +436,7 @@ function Footer() {
     <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-[#2a251c]/25 px-6 py-8 font-grotesk text-[11px] font-bold uppercase tracking-[0.2em] text-[#2a251c]/60">
       <span>© {new Date().getFullYear()} simnao · Lisboa</span>
       <span className="hidden md:block">Design 08 — Marginalia</span>
-      <Link href="/" className="hover:opacity-100">
+      <Link href="/designs" className="hover:opacity-100">
         Back to designs
       </Link>
     </footer>

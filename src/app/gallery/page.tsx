@@ -38,7 +38,7 @@ function Nav() {
     <nav className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-6">
         <Link
-          href="/"
+          href="/designs"
           className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/60 hover:text-white"
         >
           ← designs
@@ -294,7 +294,7 @@ function Footer() {
     <footer className="flex items-center justify-between border-t border-white/10 px-6 py-8 font-mono text-[11px] uppercase tracking-[0.3em] text-white/40">
       <span>© {new Date().getFullYear()} simnao · Lisboa</span>
       <span className="hidden md:block">Design 02 — The Room</span>
-      <Link href="/" className="hover:text-white">
+      <Link href="/designs" className="hover:text-white">
         Back to designs
       </Link>
     </footer>

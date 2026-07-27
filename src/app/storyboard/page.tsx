@@ -69,7 +69,7 @@ function Nav() {
     <nav className="sticky top-0 z-50 border-b border-white/10 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1300px] items-center justify-between px-6 py-4">
         <Link
-          href="/"
+          href="/designs"
           className="font-grotesk text-[11px] font-bold uppercase tracking-[0.3em] text-white/60 hover:text-white"
         >
           ← designs
@@ -322,7 +322,7 @@ function Footer() {
     <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-6 py-8 font-grotesk text-[11px] font-bold uppercase tracking-[0.3em] text-white/40">
       <span>© {new Date().getFullYear()} simnao</span>
       <span className="hidden md:block">Design 05 — Storyboard</span>
-      <Link href="/" className="hover:text-white">
+      <Link href="/designs" className="hover:text-white">
         Back to designs
       </Link>
     </footer>

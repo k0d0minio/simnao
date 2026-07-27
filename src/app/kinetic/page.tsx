@@ -47,7 +47,7 @@ function Nav() {
   return (
     <nav className="sticky top-0 z-50 border-b-[3px] border-black" style={{ background: PAPER }}>
       <div className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-3">
-        <Link href="/" className="text-sm font-bold uppercase tracking-tight hover:underline">
+        <Link href="/designs" className="text-sm font-bold uppercase tracking-tight hover:underline">
           ← designs
         </Link>
         <span className="text-lg font-black uppercase tracking-tight">simnao</span>
@@ -358,7 +358,7 @@ function Footer() {
     >
       <span>© {new Date().getFullYear()} simnao</span>
       <span>Design 03 — Kinetic</span>
-      <Link href="/" className="underline">
+      <Link href="/designs" className="underline">
         Back to designs
       </Link>
     </footer>
