@@ -19,6 +19,9 @@ const INK = "#14110d";
 const PAPER = "#e9e1cf";
 const RED = "#cf3a24";
 const BLUE = "#2340b8";
+/* the print-run panel: aubergine ground, warm-cream type & card stock */
+const RUN_BG = "#413B4D";
+const CREAM = "#FEFAF3";
 
 export default function PressLanding() {
   return (
@@ -222,9 +225,9 @@ function Run() {
   /* the three most recent plates, newest year first */
   const latest = [...artworks].sort((a, b) => b.year - a.year).slice(0, 3);
   return (
-    <section id="run" className="px-6 py-14 md:py-20">
+    <section id="run" className="px-6 py-14 md:py-20" style={{ background: RUN_BG, color: CREAM }}>
       <div className="mx-auto max-w-[1320px]">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-y-2 py-4" style={{ borderColor: INK }}>
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-y-2 py-4" style={{ borderColor: CREAM }}>
           <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-tight md:text-6xl">
             The print run
           </h2>
@@ -295,7 +298,7 @@ function Pull({
         className="relative block"
       >
       {/* the print, in a paper margin with registration ticks */}
-      <div className="relative border-2 bg-[#efe8d6] p-3" style={{ borderColor: INK }}>
+      <div className="relative border-2 p-3" style={{ borderColor: INK, background: CREAM, color: INK }}>
         <RegMark className="-left-1 -top-1 h-3 w-3" />
         <RegMark className="-right-1 -top-1 h-3 w-3" />
         <RegMark className="-bottom-1 -left-1 h-3 w-3" />
