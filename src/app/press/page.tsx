@@ -19,7 +19,8 @@ const INK = "#14110d";
 const PAPER = "#e9e1cf";
 const RED = "#cf3a24";
 const BLUE = "#2340b8";
-/* the print-run panel: aubergine ground, warm-cream type & card stock */
+/* the page ground: aubergine everywhere, with warm-cream type, card stock
+   and highlights for contrast. Also the hero's button / crop-mark accent. */
 const RUN_BG = "#413B4D";
 const CREAM = "#FEFAF3";
 
@@ -27,7 +28,7 @@ export default function PressLanding() {
   return (
     <main
       className="relative min-h-screen font-grotesk"
-      style={{ background: PAPER, color: INK }}
+      style={{ background: RUN_BG, color: CREAM }}
     >
       <PaperTooth />
       <div className="relative z-10">
@@ -64,15 +65,21 @@ function PaperTooth() {
 }
 
 /* a printer's registration target */
-function RegMark({ className = "" }: { className?: string }) {
+function RegMark({
+  className = "",
+  color = INK,
+}: {
+  className?: string;
+  color?: string;
+}) {
   return (
     <svg
       aria-hidden
       viewBox="0 0 24 24"
       className={`absolute h-4 w-4 ${className}`}
     >
-      <circle cx="12" cy="12" r="6" fill="none" stroke={INK} strokeWidth="1" />
-      <path d="M12 0 V24 M0 12 H24" stroke={INK} strokeWidth="0.8" />
+      <circle cx="12" cy="12" r="6" fill="none" stroke={color} strokeWidth="1" />
+      <path d="M12 0 V24 M0 12 H24" stroke={color} strokeWidth="0.8" />
     </svg>
   );
 }
@@ -98,7 +105,7 @@ function ColorBar() {
 
 function Nav() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-[#14110d]/25 backdrop-blur-[1px]" style={{ background: `${PAPER}ee` }}>
+    <nav className="sticky top-0 z-50 border-b backdrop-blur-[1px]" style={{ background: `${RUN_BG}ee`, borderColor: `${CREAM}40` }}>
       <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-6 py-3">
         <Link
           href="/"
@@ -158,7 +165,7 @@ function Overprint({ text }: { text: string }) {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[75vw] flex-col justify-center overflow-hidden px-6 pb-16 pt-14 md:pt-20">
+    <section className="relative flex min-h-[75vw] flex-col justify-center overflow-hidden px-6 pb-16 pt-14 md:pt-20" style={{ color: INK }}>
       {/* the studio-paper photograph, shown whole. `contain` guarantees the
          picture is never cropped, zoomed or stretched; the section is held at
          the image's own 4:3 ratio (min-height ≈ 75vw against a full-bleed
@@ -181,8 +188,8 @@ function Hero() {
         }}
       />
       {/* margin crop marks */}
-      <RegMark className="left-4 top-4" />
-      <RegMark className="right-4 top-4" />
+      <RegMark color={RUN_BG} className="left-4 top-4" />
+      <RegMark color={RUN_BG} className="right-4 top-4" />
       <div className="relative z-10 mx-auto max-w-[1320px]">
         <p className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] opacity-60">
           Edition — paintings &amp; hand-pulled prints · Simão
@@ -200,23 +207,23 @@ function Hero() {
           <div className="flex flex-wrap gap-3 text-[13px] font-bold uppercase tracking-[0.12em] md:justify-end">
             <a
               href="#run"
-              className="border-2 px-6 py-3 transition-colors"
-              style={{ borderColor: INK, background: INK, color: PAPER }}
+              className="rounded-full border-2 px-6 py-3 transition-colors"
+              style={{ borderColor: RUN_BG, background: RUN_BG, color: CREAM }}
             >
               See the run ↓
             </a>
             <a
               href="#order"
-              className="border-2 px-6 py-3"
-              style={{ borderColor: INK }}
+              className="rounded-full border-2 px-6 py-3 transition-colors hover:bg-[#413B4D] hover:text-[#FEFAF3]"
+              style={{ borderColor: RUN_BG, color: RUN_BG }}
             >
               Order a print
             </a>
           </div>
         </div>
       </div>
-      <RegMark className="bottom-1 left-4" />
-      <RegMark className="bottom-1 right-4" />
+      <RegMark color={RUN_BG} className="bottom-1 left-4" />
+      <RegMark color={RUN_BG} className="bottom-1 right-4" />
     </section>
   );
 }
@@ -298,13 +305,13 @@ function Pull({
         className="relative block"
       >
       {/* the print, in a paper margin with registration ticks */}
-      <div className="relative border-2 p-3" style={{ borderColor: INK, background: CREAM, color: INK }}>
+      <div className="relative rounded-2xl border-2 p-3" style={{ borderColor: INK, background: CREAM, color: INK }}>
         <RegMark className="-left-1 -top-1 h-3 w-3" />
         <RegMark className="-right-1 -top-1 h-3 w-3" />
         <RegMark className="-bottom-1 -left-1 h-3 w-3" />
         <RegMark className="-bottom-1 -right-1 h-3 w-3" />
 
-        <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
           <GenerativeArt artwork={art} className="h-full w-full" />
 
           {/* two spot-ink washes, out of register — they separate on hover */}
@@ -364,8 +371,8 @@ function Colophon() {
   return (
     <section className="px-6 pb-16">
       <div
-        className="mx-auto max-w-[1320px] border-2 p-8 md:p-14"
-        style={{ borderColor: INK, background: INK, color: PAPER }}
+        className="mx-auto max-w-[1320px] rounded-2xl border-2 p-8 md:p-14"
+        style={{ borderColor: CREAM, background: RUN_BG, color: CREAM }}
       >
         <div className="flex items-center justify-between gap-4">
           <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] opacity-70">
@@ -388,7 +395,7 @@ function Colophon() {
 
 function CTA() {
   return (
-    <section id="order" className="border-t-2 px-6 py-20 md:py-28" style={{ borderColor: INK }}>
+    <section id="order" className="border-t-2 px-6 py-20 md:py-28" style={{ borderColor: CREAM }}>
       <div className="mx-auto flex max-w-[1320px] flex-col items-center text-center">
         <span
           className="-rotate-3 border-[3px] px-4 py-1.5 font-mono text-[13px] font-bold uppercase tracking-[0.2em]"
@@ -405,8 +412,8 @@ function CTA() {
         </p>
         <a
           href="mailto:studio@simnao.art"
-          className="mt-9 border-2 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-[#14110d] hover:text-[#e9e1cf]"
-          style={{ borderColor: INK }}
+          className="mt-9 rounded-full border-2 px-9 py-4 text-[13px] font-bold uppercase tracking-[0.15em] transition-colors hover:bg-[#FEFAF3] hover:text-[#413B4D]"
+          style={{ borderColor: CREAM }}
         >
           Email the studio →
         </a>
@@ -417,7 +424,7 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-[#14110d]/25 px-6 py-8 font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60">
+    <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-[#FEFAF3]/25 px-6 py-8 font-mono text-[11px] font-bold uppercase tracking-[0.2em] opacity-60">
       <span>© {new Date().getFullYear()} simnao · Lisboa</span>
       <span className="hidden md:block">Design 09 — Overprint</span>
       <Link href="/" className="hover:opacity-100">
