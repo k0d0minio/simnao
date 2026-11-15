@@ -5,5 +5,5 @@
 - link: `.icm/intake/triage/replace-boilerplate-readme.md`
 - branch: triage/replace-boilerplate-readme
 - lane: chore
-- pr: pending
+- pr: #13
 - started: 2026-11-15
