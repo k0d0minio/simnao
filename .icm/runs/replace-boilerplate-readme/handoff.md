@@ -2,16 +2,18 @@
 
 ## Next action
 
-<What the next session, or the operator, does first.>
+Run `.icm/_system/scripts/questions.sh triage/replace-boilerplate-readme`. On `RESULT: OK`,
+write `README.md` with the sections that Q1 names, for the reader that Q2 names, and
+without what Q3 names. Then continue the lane flow at step 6.
 
 ## How to test
 
-<1 to 3 short sentences that can be said aloud: where to go on the preview, what to do, what the operator must see.>
+<Write this when the README is done.>
 
 ## Blockers
 
-- none
+- blocked on operator: answer the 3 questions on the HUD card, or in pull request #13.
 
 ## Do not touch
 
-- none
+- All files other than `README.md` and the files of this run.
