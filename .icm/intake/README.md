@@ -1,13 +1,10 @@
-# Intake — the ticket backlog for this repo
+# Intake
 
-> This folder follows the estate-wide ticket standard (`.icm/intake/`, canonical spec:
-> `_system/contracts/TICKETS.md` in the Apps estate). One markdown ticket per unit of work,
-> named `SIMNA-NNN-slug.md`; numbers are never reused. Each ticket carries an H1
-> (`# SIMNA-NNN · Title`), a `Priority` row (`P0`/`P1`/`P2`), and a `## Prompt` section
-> that stands alone when pasted into a fresh Claude session at the repo root. Optional
-> `Status` row: `ready` → `today` → `in-progress` → `blocked` (missing = `ready`). Finished
-> tickets are `git mv`'d to `_done/` — the folder move is the state change. The admin
-> dashboard's Tickets board reads this folder from `main`.
+This folder belongs to the repo. The rules for it are in `.icm/_system/rules/ticket.md`.
 
-Any plan, backlog, or task list for this repo becomes tickets here — never a loose
-`TODO.md` or `BACKLOG.md` at the root.
+The stubs in this folder are the tickets.
+
+- `<epic>/breakdown.md` — what the epic is, and the order of its stubs.
+- `<epic>/<slug>.md` — one stub for one unit of work.
+- `triage/<slug>.md` — a bug, a tweak or a chore that belongs to no epic.
+- `_done/` in each folder — the stubs after the merge.
